@@ -1,0 +1,19 @@
+doctype
+html
+    head
+        meta(charset='utf-8')
+        title GIF 채팅방
+    body
+        div F12를 눌러 console 탭과 network 탭을 확인하세요.
+        script.
+            // WebSocket 생성자에 연결할 서버 주소를 넣고 webSocket 객체를 생성한다. 프로토콜이 ws이다.
+            // 클라이언트에서도 서버와 마찬가지로 이벤트 기반으로 동작한다.
+            var webSocket = new WebSocket("ws://localhost:8005");
+            webSocket.onopen = function () {
+                console.log('서버와 웹 소켓 연결 성공!');
+            }
+
+            webSocket.onmessage = function (event) {
+                console.log(event.data);
+                webSocket.send('클라이언트에서 서버로 답장을 보냅니다.');
+            }
